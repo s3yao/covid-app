@@ -1,28 +1,28 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import HeaderSpace from '../components/HeaderSpace';
+import Button from '../components/Button';
+import firebase from 'firebase';
 
 const ProfileScreen = () => {
+
+    const signOut = () => {
+        firebase.auth().signOut()
+        .catch((error) => console.log(error))
+    }
+
     return <>
         <HeaderSpace/>
-        <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>Log Out</Text>
-        </TouchableOpacity>
+        <View 
+            style={styles.buttonContainer}>
+            <Button onButtonPress={signOut}>Log Out</Button>
+        </View>
     </>
 };
 
 const styles = StyleSheet.create({
-    button: {
-        height: 50,
-        margin: 40,
-        borderRadius: 5,
-        backgroundColor: '#fd5870',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    text: {
-        color: 'white',
-        fontSize: 20
+    buttonContainer: {
+        margin: 40
     }
 });
 
